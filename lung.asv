@@ -2,16 +2,26 @@
 clear all
 clf
 global Pstar cstar n maxcount M Q camax RT cI;
+
+Mall = [];
+
 for beta = 0:0.1:1
     setup_lung
     cvsolve
     outchecklung
+
+    % Task 3
     figure(4)
     hold on
-    plot(beta,Pv)oxygen partial pressure in venous blood
-    plot(beta,Pabar) mean arterial oxygen partial pressure')
-    plot(beta,PAbar) 'DisplayName', 'mean alveolar oxygen partial pressure')
-    plot(beta,PI) 'DisplayName', 'oxygen partial pressure in the inspired air')
+    plot(beta,Pv, 'ro') % oxygen partial pressure in venous blood
+    plot(beta,Pabar, 'go') % mean arterial oxygen partial pressure
+    plot(beta,PAbar, 'bo') % mean alveolar oxygen partial pressure
+    plot(beta,PI, 'mo') % oxygen partial pressure in the inspired air
+
+    % Task 4
+    Mall(end+1) = M
+
+
 end
 title('Beta vs Partial Pressure of Oxygen')
 xlabel('Beta')
