@@ -91,3 +91,18 @@ for i = 1:5
     xlabel('Altitude (m)')
     ylabel('Oxygen Concentration')
 end
+
+%% Task 7
+
+for beta = 0:0.1:1
+    setup_lung
+    cvsolve
+    outchecklung
+
+    figure(8)
+    hold on
+    plot(beta,r, 'ro') 
+end
+title('Beta vs Ventilation/Perfusion Matching')
+xlabel('Beta')
+ylabel('Ventilation/Perfusion')
