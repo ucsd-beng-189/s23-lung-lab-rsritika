@@ -38,6 +38,8 @@ ylabel('Rate of Oxygen Consumption')
 
 %% Task 5
 
+c_all = [];
+
 for cI = linspace(cref/1.5,cref,5)
     setup_lung
     cvsolve
@@ -58,5 +60,34 @@ for cI = linspace(cref/1.5,cref,5)
     plot(cI,cabar,'go') % mean arterial oxygen concentration
     plot(cI,cAbar,'bo') % mean alveolar oxygen concentration
     xlabel('Oxygen Concentration in the Inspired Air')
+    ylabel('Oxygen Concentration')
+
+    c_all(end+1) = cI;
+end
+
+%% Task 6
+
+alt = 0:5:3360;
+
+for i = 1:5
+    setup_lung
+    cvsolve
+    outchecklung
+
+    figure(7)
+    subplot (2,1,1)
+    hold on
+    plot(alt(i),Pv,'ro') % oxygen partial pressure in venous blood
+    plot(alt(i),Pabar,'go') % mean arterial oxygen partial pressure
+    plot(alt(i),PAbar,'bo') % mean alveolar oxygen partial pressure
+    xlabel('Altitude (m)')
+    ylabel('Oxygen Pressure')
+
+    subplot (2,1,2)
+    hold on
+    plot(alt(i),cv,'ro') % concentrations of oxygen in venous blood
+    plot(alt(i),cabar,'go') % mean arterial oxygen concentration
+    plot(alt(i),cAbar,'bo') % mean alveolar oxygen concentration
+    xlabel('Altitude (m)')
     ylabel('Oxygen Concentration')
 end

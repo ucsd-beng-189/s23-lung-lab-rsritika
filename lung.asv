@@ -38,6 +38,8 @@ ylabel('Rate of Oxygen Consumption')
 
 %% Task 5
 
+c_all = [];
+
 for cI = linspace(cref/1.5,cref,5)
     setup_lung
     cvsolve
@@ -46,15 +48,50 @@ for cI = linspace(cref/1.5,cref,5)
     figure(6)
     subplot (2,1,1)
     hold on
-    plot(cI,Pv,'bo') % ' oxygen partial pressure in venous blood')
-    plot(cI,Pabar,'ro') % ,'mean arterial oxygen partial pressure')
-    plot(cI,PAbar,'ko') %'mean alveolar oxygen partial pressure')
-    ylabel('Oxygen pressures')
+    plot(cI,Pv,'ro') % oxygen partial pressure in venous blood
+    plot(cI,Pabar,'go') % mean arterial oxygen partial pressure
+    plot(cI,PAbar,'bo') % mean alveolar oxygen partial pressure
+    xlabel('Oxygen Concentration in the Inspired Air')
+    ylabel('Oxygen Pressure')
+
     subplot (2,1,2)
     hold on
-    plot(cI,cv,'bo') % 'concentrations of oxygen in venous blood')
-    plot(cI,cabar,'ro') % mean arterial oxygen concentration
-    plot(cI,cAbar,'ko') % mean alveolar oxygen concentration  
-    ylabel('Oxygen concentrations')
+    plot(cI,cv,'ro') % concentrations of oxygen in venous blood
+    plot(cI,cabar,'go') % mean arterial oxygen concentration
+    plot(cI,cAbar,'bo') % mean alveolar oxygen concentration
+    xlabel('Oxygen Concentration in the Inspired Air')
+    ylabel('Oxygen Concentration')
+
+    c_all(end+1) = cI;
 end
-xlabel('cI')
+
+%% Task 6
+
+Alt = 0:5:11000;
+c_one = 0.0376/100;
+c_alt = C_one*6.3:5:cref;
+
+for i =
+    setup_lung
+    cvsolve
+    outchecklung
+
+    figure(6)
+    subplot (2,1,1)
+    hold on
+    plot(cI,Pv,'ro') % oxygen partial pressure in venous blood
+    plot(cI,Pabar,'go') % mean arterial oxygen partial pressure
+    plot(cI,PAbar,'bo') % mean alveolar oxygen partial pressure
+    xlabel('Oxygen Concentration in the Inspired Air')
+    ylabel('Oxygen Pressure')
+
+    subplot (2,1,2)
+    hold on
+    plot(cI,cv,'ro') % concentrations of oxygen in venous blood
+    plot(cI,cabar,'go') % mean arterial oxygen concentration
+    plot(cI,cAbar,'bo') % mean alveolar oxygen concentration
+    xlabel('Oxygen Concentration in the Inspired Air')
+    ylabel('Oxygen Concentration')
+
+    c_all(end+1) = cI;
+end
